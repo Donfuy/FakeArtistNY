@@ -29,6 +29,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -52,6 +56,9 @@ dependencies {
     // Jetpack Room
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
+    // Jetpack DataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
 
     // Testing
     testImplementation 'junit:junit:4.+'

@@ -7,9 +7,9 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "player")
 data class Player(
     @PrimaryKey(autoGenerate = true)
-    val id: Long,
+    val id: Long = 0,
     val name: String,
     @ColumnInfo(name = "is_fake")
-    val isFake: Boolean,
+    val isFake: Boolean = false,
     val color: Int
 )
