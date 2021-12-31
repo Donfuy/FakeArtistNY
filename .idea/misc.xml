@@ -5,6 +5,10 @@
       <map>
         <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_add_player.xml" value="0.1" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_add_word.xml" value="0.1" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_order.xml" value="0.1" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_reveal.xml" value="0.1" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_start.xml" value="0.1" />
         <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/list_item_player.xml" value="0.1" />
       </map>
     </option>
