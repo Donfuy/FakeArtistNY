@@ -9,7 +9,5 @@ data class Player(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val name: String,
-    @ColumnInfo(name = "is_fake")
-    val isFake: Boolean = false,
     val color: Int
 )

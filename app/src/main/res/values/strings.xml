@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">FakeArtistNY</string>
+    <string name="start">Start!</string>
 </resources>
