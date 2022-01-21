@@ -1,7 +1,10 @@
 package com.example.fakeartistny.ui.viewmodel
 
+import android.graphics.Color
 import android.util.Log
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
+import com.example.fakeartistny.R
 import com.example.fakeartistny.data.PlayerDao
 import com.example.fakeartistny.model.Player
 import kotlinx.coroutines.launch
@@ -11,7 +14,22 @@ enum class Phase {
     PLAYER, WORDS, REVEAL, ORDER
 }
 
+private val penColors = arrayOf(
+    R.color.dark_green,
+    R.color.green,
+    R.color.orange,
+    R.color.red,
+    R.color.purple,
+    R.color.lilac,
+    R.color.blue,
+    R.color.light_blue,
+    R.color.pink
+)
+
+private const val TAG = "GameViewModel"
+
 class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
+
     val allPlayers: LiveData<List<Player>> = playerDao.getPlayers().asLiveData()
 
     // Player currently playing, regardless of phase
@@ -21,6 +39,10 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
     // Current phase of the game
     var currentPhase = Phase.PLAYER
     var playerOrder: List<Player> = listOf()
+
+    // Color for the next added player
+    private var _currentColor = MutableLiveData<Int>(R.color.red)
+    val currentColor: LiveData<Int> = _currentColor
 
     // List of fakes
     private var fakes: MutableList<Player> = mutableListOf()
@@ -72,10 +94,36 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
     }
 
     /**
+     *  A game is valid if there's at least 3 players
+     */
+    fun gameIsValid(): Boolean {
+        val players: List<Player> = allPlayers.value ?: listOf()
+        return players.size >= 3
+    }
+
+    /**
      * Checks if a player is a Fake Artist
      */
     fun isFake(): Boolean {
         return fakes.find { it == currentPlayer.value } != null
+    }
+
+
+    /**
+     *  COLORS
+     */
+    fun cycleColors() {
+        val currentColorIndex = penColors.indexOf(currentColor.value)
+        Log.d(TAG, currentColorIndex.toString())
+        if (currentColorIndex == penColors.size - 1) {
+            _currentColor.value = penColors[0]
+        } else {
+            _currentColor.value = penColors[currentColorIndex + 1]
+        }
+    }
+
+    fun nextColor() {
+
     }
 
     /**
@@ -144,10 +192,10 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
             name = name,
             color = color
         )
-
         viewModelScope.launch {
             playerDao.insert(player)
         }
+        cycleColors()
     }
 
     fun updatePlayer(id: Long, name: String, color: Int) {

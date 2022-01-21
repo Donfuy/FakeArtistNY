@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="name_max_text_size">24sp</dimen>
+    <dimen name="name_min_text_size">12sp</dimen>
+    <dimen name="circle_button_radius">60dp</dimen>
+</resources>

@@ -1,21 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/pink_medium"
     tools:context=".ui.StartFragment">
+
+    <!-- TODO: Airplane -->
+    <ImageView
+        android:id="@+id/imageview_airplane"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fany_plane"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/imageview_cityscape"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:paddingBottom="0dp"
+        android:scaleType="fitEnd"
+        android:src="@drawable/fany_cityscape"
+        app:layout_constraintBottom_toTopOf="@id/imageview_logo"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageview_logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="32dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fany_full_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/button_start"
-        android:text="@string/start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/pink_dark"
+        android:fontFamily="@font/multicolore_pro"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:text="@string/play"
+        android:textSize="22sp"
+        app:cornerRadius="60dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Start!"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageview_logo"
+        tools:text="Play!" />
+
+    <!--    TODO: Buy game button   -->
+
+    <!--    TODO: Change language button    -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

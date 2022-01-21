@@ -18,6 +18,7 @@ class PlayerListAdapter(
 
         fun bind(player: Player) {
             binding.player = player
+            binding.name.setTextColor(player.color)
             binding.executePendingBindings()
         }
     }
@@ -32,8 +33,14 @@ class PlayerListAdapter(
         }
     }
 
+    // Get a reference to the RecyclerView
+    private lateinit var mParent: ViewGroup
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PlayerViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
+
+        mParent = parent
+
         return PlayerViewHolder(
             ListItemPlayerBinding.inflate(layoutInflater, parent, false)
         )
@@ -41,6 +48,11 @@ class PlayerListAdapter(
 
     override fun onBindViewHolder(holder: PlayerViewHolder, position: Int) {
         val player = getItem(position)
+
+        // Scroll to the bottom of the recyclerview whenever a new item is added
+        val recyclerView: RecyclerView = mParent as RecyclerView
+        recyclerView.scrollToPosition(position)
+
         holder.itemView.setOnClickListener {
             clickListener(player)
         }

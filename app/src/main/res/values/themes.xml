@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FakeArtistNY" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.FakeArtistNY" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
-        <item name="colorPrimaryVariant">@color/purple_700</item>
+        <item name="colorPrimaryVariant">@color/pink_dark</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -11,6 +11,16 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+
         <!-- Customize your theme here. -->
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.FakeArtistNY.MaterialAlertDialog</item>
+    </style>
+
+    <!-- Material Alert Dialog Style -->
+    <style name="ThemeOverlay.FakeArtistNY.MaterialAlertDialog"
+        parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="materialAlertDialogBodyTextStyle">@style/MaterialAlertDialog.FakeArtistNY.Body.Text</item>
+        <item name="alertDialogStyle">@style/MaterialAlertDialog.FakeArtistNY</item>
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.FakeArtistNY.Dialog.Button</item>
     </style>
 </resources>

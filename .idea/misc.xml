@@ -3,13 +3,23 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.3106837606837607" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/drawable/circle_button_shape.xml" value="0.33" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/drawable/ic_launcher_background.xml" value="0.3106837606837607" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/drawable/list_item_shape.xml" value="0.3106837606837607" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/font-v26/hero.xml" value="0.1648148148148148" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/font-v26/multicolore.xml" value="0.1361111111111111" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/font/hero.xml" value="0.2852320675105485" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/font/multicolore.xml" value="0.32222222222222224" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout-v26/list_item_player.xml" value="0.75" />
         <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/activity_main.xml" value="0.125" />
         <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_add_player.xml" value="0.1" />
         <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_add_word.xml" value="0.22" />
         <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_order.xml" value="0.1" />
         <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_reveal.xml" value="0.1" />
-        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_start.xml" value="0.1" />
-        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/list_item_player.xml" value="0.1" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/fragment_start.xml" value="0.25" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/layout/list_item_player.xml" value="0.33" />
+        <entry key="..\:/Users/donfu/AndroidStudioProjects/FakeArtistNY/app/src/main/res/xml/root_preferences.xml" value="0.1" />
       </map>
     </option>
   </component>

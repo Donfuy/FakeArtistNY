@@ -15,34 +15,42 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/list_item_shape">
+        android:layout_margin="8dp"
+        android:background="@drawable/list_item_shape"
+        android:backgroundTint="@color/white"
+        android:paddingVertical="8dp">
 
         <TextView
             android:id="@+id/name"
             android:layout_width="124dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
+            android:autoSizeMaxTextSize="@dimen/name_max_text_size"
+            android:autoSizeMinTextSize="@dimen/name_min_text_size"
+            android:autoSizeTextType="uniform"
+            android:ellipsize="end"
             android:fontFamily="@font/hero_bold"
+            android:gravity="center_vertical"
+            android:maxLines="1"
             android:padding="8dp"
             android:text="@{player.name}"
-            android:gravity="center_vertical"
-            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:autoSizeTextType="uniform"
-            tools:text="Telmo" />
+            tools:text="Telmo"
+            tools:textColor="@color/red"/>
 
         <ImageView
             android:id="@+id/button_remove_player"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
+            android:contentDescription="@string/delete_player_player_name"
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:contentDescription="@string/delete_player_player_name" />
+            app:layout_constraintStart_toEndOf="@id/name"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

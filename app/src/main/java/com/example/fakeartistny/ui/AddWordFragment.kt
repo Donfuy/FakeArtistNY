@@ -17,6 +17,8 @@ import com.example.fakeartistny.ui.viewmodel.Phase
 private const val TAG = "AddWordFragment"
 
 // TODO: On back behaviour
+// TODO: If it's the fake artists' turn, don't add the word
+// TODO: Let the app choose a word for you from a dictionary (shuffle button)
 class AddWordFragment : Fragment() {
 
     private val viewModel: GameViewModel by activityViewModels {

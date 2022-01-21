@@ -1,51 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/pink_medium">
+
+    <ImageView
+        android:id="@+id/imageview_airplane"
+        android:layout_width="70dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="12dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fany_plane"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageview_logo"
+        android:layout_width="230dp"
+        android:layout_height="100dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="16dp"
+        android:importantForAccessibility="no"
+        android:scaleType="fitCenter"
+        android:src="@drawable/fany_full_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageview_airplane"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/players_recycler_view"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:elevation="1dp"
+        android:overScrollMode="never"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/container_add_player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imageview_logo"
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_input_name"
-        android:layout_width="match_parent"
+        app:spanCount="2"
+        tools:listitem="@layout/list_item_player" />
+
+    <ImageView
+        android:id="@+id/imageview_cityscape"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/players_recycler_view">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_text_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="New player"/>
-    </com.google.android.material.textfield.TextInputLayout>
+        android:layout_marginBottom="8dp"
+        android:importantForAccessibility="no"
+        android:paddingBottom="0dp"
+        android:scaleType="fitEnd"
+        android:src="@drawable/fany_cityscape"
+        app:layout_constraintBottom_toTopOf="@id/container_add_player"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/button_add_player"
+    <ImageView
+        android:id="@+id/button_settings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_input_name"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/circle_button_shape"
+        android:contentDescription="@string/game_settings"
+        android:padding="8dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_baseline_settings_36"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:text="+"
-        tools:text="+"/>
+        app:layout_constraintTop_toBottomOf="@id/players_recycler_view"
+        app:tint="@color/white" />
 
-    <Button
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container_add_player"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/list_item_shape"
+        android:backgroundTint="@color/white"
+        android:paddingVertical="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/button_settings"
+        app:layout_constraintEnd_toStartOf="@+id/button_start_game"
+        app:layout_constraintStart_toEndOf="@id/button_settings"
+        app:layout_constraintTop_toTopOf="@id/button_settings">
+
+        <ImageView
+            android:id="@+id/button_change_color"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/change_player_color"
+            android:src="@drawable/ic_baseline_brush_36"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_text_name"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:autoSizeMaxTextSize="@dimen/name_max_text_size"
+            android:autoSizeMinTextSize="@dimen/name_min_text_size"
+            android:autoSizeTextType="uniform"
+            android:background="@color/white"
+            android:fontFamily="@font/hero_bold"
+            android:hint="@string/new_player_hint"
+            android:inputType="textNoSuggestions|textCapWords"
+            android:padding="8dp"
+            android:imeOptions="actionGo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_add_player"
+            app:layout_constraintStart_toEndOf="@id/button_change_color"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/button_add_player"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/add_player"
+            android:src="@drawable/ic_baseline_add_36"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
         android:id="@+id/button_start_game"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/button_add_player"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/circle_button_shape"
+        android:contentDescription="@string/start_game"
+        android:padding="8dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_baseline_play_arrow_36"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Start!"
-        tools:text="Start!"/>
-
-
+        app:layout_constraintTop_toBottomOf="@id/players_recycler_view"
+        app:tint="@color/white" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

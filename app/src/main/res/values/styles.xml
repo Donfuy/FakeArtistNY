@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- TODO: Create styles for buttons -->
+
+    <!-- Alert Dialog Styles -->
+    <style name="MaterialAlertDialog.FakeArtistNY" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="shapeAppearance">@style/ShapeAppearance.FakeArtistNY.MediumComponent</item>
+    </style>
+    <style name="ShapeAppearance.FakeArtistNY.MediumComponent"
+        parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerSize">24dp</item>
+
+    </style>
+
+    <style name="MaterialAlertDialog.FakeArtistNY.Body.Text"
+        parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="fontFamily">@font/hero_bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">4dp</item>
+    </style>
+
+    <style name="Widget.FakeArtistNY.Dialog.Button"
+        parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="cornerRadius">60dp</item>
+        <item name="backgroundTint">@color/pink_dark</item>
+        <item name="fontFamily">@font/hero_bold</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_margin">2dp</item>
+    </style>
+
+</resources>
