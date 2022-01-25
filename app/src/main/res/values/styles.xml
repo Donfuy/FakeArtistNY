@@ -31,4 +31,20 @@
         <item name="android:layout_margin">2dp</item>
     </style>
 
+    <style name="Widget.FakeArtistNY.TextInputLayout"
+        parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="shapeAppearance">@style/ShapeAppearance.FakeArtistNY.SmallComponent</item>
+    </style>
+
+    <style name="ShapeAppearance.FakeArtistNY.SmallComponent"
+        parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerSize">24dp</item>
+        <item name="cornerFamily">rounded</item>
+        <item name="boxCornerRadiusBottomEnd">8dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.FakeArtistNY" parent="ShapeAppearanceOverlay">
+
+    </style>
+
 </resources>

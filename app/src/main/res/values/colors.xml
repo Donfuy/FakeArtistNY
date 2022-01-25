@@ -17,16 +17,28 @@
     <color name="yellow_light">#ffff57</color>
 
 
-    <!--    PLAYER COLORS   -->
-    <color name="dark_green">#109866</color>
-    <color name="green">#00e09a</color>
-    <color name="orange">#fe9400</color>
-    <color name="red">#db0308</color>
-    <color name="purple">#350278</color>
-    <color name="lilac">#ff0b84</color>
-    <color name="blue">#003ad4</color>
-    <color name="light_blue">#02B3F9</color>
-    <color name="pink">#ff83b9</color>
-    <color name="brown">#4B2E2A</color>
+    <!-- PLAYER COLORS -->
+    <color name="fg_dark_green">#109866</color>
+    <color name="fg_green">#00e09a</color>
+    <color name="fg_orange">#fe9400</color>
+    <color name="fg_red">#db0308</color>
+    <color name="fg_purple">#350278</color>
+    <color name="fg_lilac">#ff0b84</color>
+    <color name="fg_blue">#003ad4</color>
+    <color name="fg_light_blue">#02B3F9</color>
+    <color name="fg_pink">#ff83b9</color>
+    <color name="fg_brown">#4B2E2A</color>
+
+    <!-- PLAYER BACKGROUND COLORS -->
+    <color name="bg_dark_green">#477C49</color>
+    <color name="bg_green">#4FAC8F</color>
+    <color name="bg_orange">#FFB855</color>
+    <color name="bg_red">#BC393C</color>
+    <color name="bg_purple">#594375</color>
+    <color name="bg_lilac">#FF53A8</color>
+    <color name="bg_blue">#4B6DC6</color>
+    <color name="bg_light_blue">#73CEF3</color>
+    <color name="bg_pink">#D36A98</color>
+    <color name="bg_brown">#834F48</color>
 
 </resources>

@@ -29,14 +29,17 @@
         <action
             android:id="@+id/action_addWordFragment_to_revealFragment"
             app:destination="@id/revealFragment" />
+        <action
+            android:id="@+id/action_addWordFragment_to_addPlayersFragment"
+            app:destination="@id/addPlayersFragment" />
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
         android:name="com.example.fakeartistny.ui.OrderFragment"
         android:label="OrderFragment" >
         <action
-            android:id="@+id/action_orderFragment_to_startFragment"
-            app:destination="@id/startFragment" />
+            android:id="@+id/action_orderFragment_to_addPlayersFragment"
+            app:destination="@id/addPlayersFragment" />
     </fragment>
     <fragment
         android:id="@+id/revealFragment"
@@ -45,5 +48,8 @@
         <action
             android:id="@+id/action_revealFragment_to_orderFragment"
             app:destination="@id/orderFragment" />
+        <action
+            android:id="@+id/action_revealFragment_to_addPlayersFragment"
+            app:destination="@id/addPlayersFragment" />
     </fragment>
 </navigation>

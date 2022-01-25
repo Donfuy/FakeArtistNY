@@ -1,8 +1,6 @@
 package com.example.fakeartistny.ui.viewmodel
 
-import android.graphics.Color
 import android.util.Log
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.*
 import com.example.fakeartistny.R
 import com.example.fakeartistny.data.PlayerDao
@@ -15,15 +13,15 @@ enum class Phase {
 }
 
 private val penColors = arrayOf(
-    R.color.dark_green,
-    R.color.green,
-    R.color.orange,
-    R.color.red,
-    R.color.purple,
-    R.color.lilac,
-    R.color.blue,
-    R.color.light_blue,
-    R.color.pink
+    R.color.fg_dark_green,
+    R.color.fg_green,
+    R.color.fg_orange,
+    R.color.fg_red,
+    R.color.fg_purple,
+    R.color.fg_lilac,
+    R.color.fg_blue,
+    R.color.fg_light_blue,
+    R.color.fg_pink
 )
 
 private const val TAG = "GameViewModel"
@@ -41,7 +39,7 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
     var playerOrder: List<Player> = listOf()
 
     // Color for the next added player
-    private var _currentColor = MutableLiveData<Int>(R.color.red)
+    private var _currentColor = MutableLiveData<Int>(R.color.fg_red)
     val currentColor: LiveData<Int> = _currentColor
 
     // List of fakes
@@ -64,33 +62,60 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
         currentPhase = Phase.PLAYER
     }
 
+    /**
+     * onBack behaviour
+     */
+    fun back() {
+        if (isFirstPlayer()) {
+            resetGame()
+        } else {
+            _currentPlayer.value = previousPlayer()
+            if (currentPhase == Phase.WORDS) {
+                words.removeLast()
+            }
+        }
+    }
+
+    /**
+     * Advances the game, either by phase or by player
+     */
     fun next() {
-        // TODO: Check if there's enough players
+        // T
         when (currentPhase) {
             Phase.PLAYER -> setWordsPhase()
             Phase.WORDS -> {
                 if (_currentPlayer.value == playerOrder.last()) {
                     setRevealPhase()
                 } else {
-                    nextPlayer()
+                    _currentPlayer.value = nextPlayer()
                 }
             }
             Phase.REVEAL -> {
                 if (_currentPlayer.value == playerOrder.last()) {
                     setOrderPhase()
                 } else {
-                    nextPlayer()
+                    _currentPlayer.value = nextPlayer()
                 }
             }
             else -> Phase.PLAYER
         }
     }
 
-    // Change current player to the next player in the order
+    // Returns the next player in the order
     // There must be another way to do this
-    private fun nextPlayer() {
+    private fun nextPlayer(): Player {
         val currentPlayerIndex = playerOrder.indexOf(_currentPlayer.value)
-        _currentPlayer.value = playerOrder[currentPlayerIndex + 1]
+        return playerOrder[currentPlayerIndex + 1]
+    }
+
+    // Change current player to the previous player
+    private fun previousPlayer(): Player {
+        val currentPlayerIndex = playerOrder.indexOf(_currentPlayer.value)
+        return playerOrder[currentPlayerIndex - 1]
+    }
+
+    fun isFirstPlayer(): Boolean {
+        return (_currentPlayer.value == playerOrder.first())
     }
 
     /**

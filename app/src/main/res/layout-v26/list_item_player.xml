@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Telmo"
-            tools:textColor="@color/red"/>
+            tools:textColor="@color/fg_red"/>
 
         <ImageView
             android:id="@+id/button_remove_player"

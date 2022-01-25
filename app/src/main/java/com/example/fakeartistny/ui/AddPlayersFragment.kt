@@ -1,15 +1,12 @@
 package com.example.fakeartistny.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -22,7 +19,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 private const val TAG = "AddPlayersFragment"
-// TODO: On back behaviour. If it's the first player, reset the game; otherwise hide the word again
+
+
 class AddPlayersFragment : Fragment() {
 
     private val viewModel: GameViewModel by activityViewModels {
@@ -56,7 +54,7 @@ class AddPlayersFragment : Fragment() {
         }
 
         // Show keyboard immediately
-        showSoftKeyboard(binding.editTextName)
+        showSoftKeyboard(requireActivity(), binding.editTextName)
 
         viewModel.allPlayers.observe(this.viewLifecycleOwner) { players ->
             players.let {
@@ -98,7 +96,7 @@ class AddPlayersFragment : Fragment() {
 //                findNavController().navigate(
 //                    AddPlayersFragmentDirections.actionAddPlayersFragmentToSettingsFragment()
 //                )
-                hideSoftKeyboard(editTextName)
+                hideSoftKeyboard(requireActivity(), editTextName)
             }
 
             buttonStartGame.setOnClickListener {
@@ -113,7 +111,7 @@ class AddPlayersFragment : Fragment() {
                     // Tell the player a game needs at least 3 players
                     MaterialAlertDialogBuilder(requireContext())
                         .setMessage("You need at least 3 players to start!")
-                        .setPositiveButton("Okay") {_, _ ->
+                        .setPositiveButton("Okay") { _, _ ->
 
                         }
                         .show()
@@ -146,19 +144,5 @@ class AddPlayersFragment : Fragment() {
                 ContextCompat.getColor(this.root.context, viewModel.currentColor.value!!)
             )
         }
-    }
-
-    private fun showSoftKeyboard(view: View) {
-        if (view.requestFocus()) {
-            val imm =
-                this.activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.showSoftInput(view, InputMethodManager.SHOW_IMPLICIT)
-        }
-    }
-
-    private fun hideSoftKeyboard(view: View) {
-        val imm =
-            this.activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
 }

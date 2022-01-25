@@ -48,7 +48,7 @@ class OrderFragment : Fragment(){
                 viewModel.next()
                 viewModel.resetGame()
                 findNavController().navigate(
-                    OrderFragmentDirections.actionOrderFragmentToStartFragment()
+                    OrderFragmentDirections.actionOrderFragmentToAddPlayersFragment()
                 )
             }
         }

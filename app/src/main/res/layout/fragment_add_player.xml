@@ -108,6 +108,7 @@
             android:autoSizeMaxTextSize="@dimen/name_max_text_size"
             android:autoSizeMinTextSize="@dimen/name_min_text_size"
             android:autoSizeTextType="uniform"
+            android:textCursorDrawable="@drawable/black_cursor"
             android:background="@color/white"
             android:fontFamily="@font/hero_bold"
             android:hint="@string/new_player_hint"

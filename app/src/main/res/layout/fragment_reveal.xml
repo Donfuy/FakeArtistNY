@@ -1,34 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/reveal_constraint_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/bg_green">
 
     <TextView
-        android:id="@+id/text_view_player"
+        android:id="@+id/text_view_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/hero_bold"
+        android:textColor="@color/white"
+        android:textSize="46sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Telmo" />
+
+    <TextView
+        android:id="@+id/text_view_help"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/hero_regular"
+        android:text="@string/add_word_help_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_name" />
 
     <TextView
         android:id="@+id/text_view_reveal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_view_player"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="@dimen/word_card_width"
+        android:layout_height="@dimen/word_card_height"
+        android:layout_margin="16dp"
+        android:background="@drawable/list_item_shape"
+        android:backgroundTint="@color/white"
+        android:elevation="2dp"
+        android:fontFamily="@font/hero_bold"
+        android:gravity="center"
+        android:padding="18dp"
+        android:textSize="28sp"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Click me!"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_help"
+        tools:text="Automobile" />
 
     <Button
         android:id="@+id/button_reveal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/text_view_reveal"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="8dp"
+        android:backgroundTint="@color/pink_medium"
+        android:fontFamily="@font/hero_bold"
+        android:paddingHorizontal="24dp"
+        android:paddingVertical="16dp"
+        android:text="Next"
+        android:textSize="22sp"
+        app:cornerRadius="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:text="Next"/>
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
