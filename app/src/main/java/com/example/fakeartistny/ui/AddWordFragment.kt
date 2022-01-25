@@ -11,6 +11,9 @@ import android.widget.AutoCompleteTextView
 import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doAfterTextChanged
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -41,37 +44,29 @@ class AddWordFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // TODO: On back behaviour - If it's the first player, reset game - if it's not, set current player to the last one
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
-
-            if (viewModel.isFirstPlayer()) {
-                // Ask to reset game
-                MaterialAlertDialogBuilder(requireContext())
-                    .setMessage("")
-                    .setPositiveButton("Yes") {_, _ ->
-                        viewModel.back()
-                        findNavController().navigate(
-                            AddWordFragmentDirections.actionAddWordFragmentToAddPlayersFragment()
-                        )
-                    }
-                    .setNegativeButton("No") { _, _ ->
-                        // Do nothing
-                    }
-                    .show()
-            } else {
-                // Ask to go back to the last player
-                MaterialAlertDialogBuilder(requireContext())
-                    .setMessage("")
-                    .setPositiveButton("Yes") { _, _ ->
-                        // Go back to previous player and clear word text field
-                        viewModel.back()
-                        binding.editTextWord.setText("")
-                    }
-                    .setNeutralButton("No") {_, _ ->
-                        // Do nothing
-                    }
-                    .show()
+            showResetGameAlertDialog(requireContext()) {
+                viewModel.resetGame()
+                findNavController().navigate(
+                    AddWordFragmentDirections.actionAddWordFragmentToAddPlayersFragment()
+                )
             }
+
+//            if (viewModel.isFirstPlayer()) {
+//                // Ask to reset game
+//                showResetGameAlertDialog(requireContext()) {
+//                    viewModel.back()
+//                    findNavController().navigate(
+//                        AddWordFragmentDirections.actionAddWordFragmentToAddPlayersFragment()
+//                    )
+//                }
+//            } else {
+//                // Ask to go back to the last player
+//                showGoBackAlertDialog(requireContext()) {
+//                    viewModel.back()
+//                    binding.editTextWord.setText("")
+//                }
+//            }
         }
     }
 
@@ -97,6 +92,15 @@ class AddWordFragment : Fragment() {
         binding.apply {
             // Views logic
             editTextWord.requestFocus()
+
+            // If text field is empty, disable the next button
+
+            editTextWord.doAfterTextChanged { text ->
+                Log.d(TAG, text.toString())
+                buttonAddWord.isEnabled = (text.toString() != "")
+            }
+
+
             (textInputCategory.editText as? AutoCompleteTextView)?.setAdapter(adapter)
             (textInputCategory.editText as? AutoCompleteTextView)?.setText(
                 resources.getStringArray(R.array.word_categories)[0],
@@ -104,9 +108,7 @@ class AddWordFragment : Fragment() {
             )
 
             buttonAddWord.setOnClickListener {
-                Log.d(TAG, "Phase is: " + viewModel.currentPhase)
-                viewModel.words.add(editTextWord.text.toString())
-                Log.d(TAG, editTextWord.text.toString())
+                addWord(editTextWord.text.toString())
                 viewModel.next()
 
                 if (viewModel.currentPhase != Phase.WORDS) {
@@ -118,6 +120,12 @@ class AddWordFragment : Fragment() {
                     editTextWord.setText("")
                 }
             }
+        }
+    }
+
+    private fun addWord(word: String) {
+        if (!viewModel.currentPlayerIsFake()) {
+            viewModel.words.add(word)
         }
     }
 
@@ -133,11 +141,11 @@ class AddWordFragment : Fragment() {
             addWordConstraintLayout.setBackgroundColor(bgColor)
 
             // Set status bar and button color to a darkened version of bgColor
-            // TODO: Turn this ColorUtils call into an extension function
             requireActivity().window.statusBarColor =
                 ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f)
             buttonAddWord.setBackgroundColor(ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f))
             textViewName.text = player.name
+            buttonAddWord.isEnabled = false
         }
     }
 

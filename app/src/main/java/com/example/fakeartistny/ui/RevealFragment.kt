@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
@@ -31,11 +32,40 @@ class RevealFragment : Fragment() {
     private var _binding: FragmentRevealBinding? = null
     private val binding get() = _binding!!
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            showResetGameAlertDialog(requireContext()) {
+                viewModel.resetGame()
+                findNavController().navigate(
+                    RevealFragmentDirections.actionRevealFragmentToAddPlayersFragment()
+                )
+            }
+
+
+//            if (viewModel.isFirstPlayer()) {
+//                // Ask to reset game
+//                showResetGameAlertDialog(requireContext()) {
+//
+//                    findNavController().navigate(
+//                        RevealFragmentDirections.actionRevealFragmentToAddPlayersFragment()
+//                    )
+//                }
+//            } else {
+//                // Ask to go back to the last player
+//                showGoBackAlertDialog(requireContext()) {
+//                    viewModel.back()
+//                }
+//            }
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentRevealBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -48,12 +78,14 @@ class RevealFragment : Fragment() {
         }
 
         binding.apply {
+            binding.textViewReveal.text = "Tap to reveal"
             buttonReveal.isEnabled = false
             textViewReveal.setOnClickListener {
                 // Reveal role
-                Log.d(TAG, viewModel.isFake().toString())
-                if (viewModel.isFake()) {
-                    textViewReveal.text = "Fake Artist!"
+                Log.d(TAG, viewModel.currentPlayerIsFake().toString())
+                if (viewModel.currentPlayerIsFake()) {
+                    textViewReveal.text = "X"
+                    textViewCategory.text = "Fake Artist!"
                 } else {
                     Log.d(TAG, viewModel.word.value!!)
                     textViewReveal.text = viewModel.word.value
@@ -69,7 +101,7 @@ class RevealFragment : Fragment() {
                         RevealFragmentDirections.actionRevealFragmentToOrderFragment()
                     )
                 } else {
-                    textViewReveal.text = "Click me!"
+                    textViewReveal.text = "Tap to reveal"
                     buttonReveal.isEnabled = false
                 }
             }
@@ -88,7 +120,6 @@ class RevealFragment : Fragment() {
             revealConstraintLayout.setBackgroundColor(bgColor)
 
             // Set status bar and button color to a darkened version of bgColor
-            // TODO: Turn this ColorUtils call into an extension function
             requireActivity().window.statusBarColor =
                 ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f)
             buttonReveal.setBackgroundColor(ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f))

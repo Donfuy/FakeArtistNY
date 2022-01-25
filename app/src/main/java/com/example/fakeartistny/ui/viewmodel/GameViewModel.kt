@@ -63,24 +63,10 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
     }
 
     /**
-     * onBack behaviour
-     */
-    fun back() {
-        if (isFirstPlayer()) {
-            resetGame()
-        } else {
-            _currentPlayer.value = previousPlayer()
-            if (currentPhase == Phase.WORDS) {
-                words.removeLast()
-            }
-        }
-    }
-
-    /**
      * Advances the game, either by phase or by player
      */
     fun next() {
-        // T
+
         when (currentPhase) {
             Phase.PLAYER -> setWordsPhase()
             Phase.WORDS -> {
@@ -129,7 +115,7 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
     /**
      * Checks if a player is a Fake Artist
      */
-    fun isFake(): Boolean {
+    fun currentPlayerIsFake(): Boolean {
         return fakes.find { it == currentPlayer.value } != null
     }
 

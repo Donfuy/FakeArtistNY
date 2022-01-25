@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:fontFamily="@font/hero_regular"
-        android:text="@string/add_word_help_text"
+        android:text="@string/reveal_help_text"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp"
@@ -41,15 +41,29 @@
         android:layout_margin="16dp"
         android:background="@drawable/list_item_shape"
         android:backgroundTint="@color/white"
-        android:elevation="2dp"
         android:fontFamily="@font/hero_bold"
         android:gravity="center"
         android:padding="18dp"
+        android:text="Tap to reveal"
         android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_view_help"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="Automobile" />
+
+    <TextView
+        android:id="@+id/text_view_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="1dp"
+        android:fontFamily="@font/hero_regular"
+        android:textSize="18sp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/text_view_reveal"
+        app:layout_constraintStart_toStartOf="@id/text_view_reveal"
+        app:layout_constraintEnd_toEndOf="@id/text_view_reveal"
+        tools:text="Object"/>
 
     <Button
         android:id="@+id/button_reveal"
@@ -65,7 +79,8 @@
         app:cornerRadius="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_reveal" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

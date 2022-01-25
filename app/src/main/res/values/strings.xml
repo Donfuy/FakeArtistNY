@@ -20,4 +20,5 @@
 
     <!-- Test Strings -->
     <string name="lorem_ipsum">Vel nihil iure saepe voluptas. Non consequatur reiciendis sunt quod sapiente architecto cumque vel. Assumenda veniam impedit qui deleniti totam quia. Aut ut consequuntur dignissimos. Officiis quia amet voluptatem amet illo.</string>
+    <string name="reveal_help_text">Tap the card below to reveal what you\'re supposed to draw. If there\'s an X instead of a word, you\'re the Fake Artist!</string>
 </resources>
