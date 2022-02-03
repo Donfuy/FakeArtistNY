@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/pink_medium"
+    android:padding="8dp"
+    tools:context=".ui.SettingsFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/text_view_settings_header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:gravity="center"
+        android:text="@string/settings_header"
+        android:textColor="@color/yellow_medium"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button_close" />
+
+    <ImageView
+        android:id="@+id/button_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_baseline_close_48"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_view_settings_header">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/text_view_modifiers_sub_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="@string/sub_header_modifiers"
+                android:textColor="@color/yellow_medium"
+                android:textSize="@dimen/sub_header_text_size"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- All Fake Artists -->
+            <TextView
+                android:id="@+id/text_view_all_fa_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/all_fa_modifier_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/text_view_modifiers_sub_header"
+                app:layout_constraintTop_toBottomOf="@id/text_view_modifiers_sub_header" />
+
+            <TextView
+                android:id="@+id/text_view_all_fa_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/all_fa_modifier_description"
+                android:textColor="@color/grey"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/checkbox_all_fa"
+                app:layout_constraintStart_toStartOf="@id/text_view_all_fa_title"
+                app:layout_constraintTop_toBottomOf="@id/text_view_all_fa_title" />
+
+            <CheckBox
+                android:id="@+id/checkbox_all_fa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/text_view_all_fa_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text_view_all_fa_title" />
+
+            <!-- No Fake Artist -->
+            <TextView
+                android:id="@+id/text_view_no_fa_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/no_fa_modifier_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/text_view_all_fa_description"
+                app:layout_constraintTop_toBottomOf="@id/text_view_all_fa_description" />
+
+            <TextView
+                android:id="@+id/text_view_no_fa_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/no_fa_modifier_description"
+                android:textColor="@color/grey"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/checkbox_all_fa"
+                app:layout_constraintStart_toStartOf="@id/text_view_no_fa_title"
+                app:layout_constraintTop_toBottomOf="@id/text_view_no_fa_title" />
+
+            <CheckBox
+                android:id="@+id/checkbox_no_fa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/text_view_no_fa_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text_view_no_fa_title" />
+
+            <!-- Random Number of Fake Artists -->
+            <TextView
+                android:id="@+id/text_view_random_fa_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/random_fa_modifier_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/text_view_no_fa_description"
+                app:layout_constraintTop_toBottomOf="@id/text_view_no_fa_description" />
+
+            <TextView
+                android:id="@+id/text_view_random_fa_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/random_fa_modifier_description"
+                android:textColor="@color/grey"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/checkbox_all_fa"
+                app:layout_constraintStart_toStartOf="@id/text_view_random_fa_title"
+                app:layout_constraintTop_toBottomOf="@id/text_view_random_fa_title" />
+
+            <CheckBox
+                android:id="@+id/checkbox_random_fa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/text_view_random_fa_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text_view_random_fa_title" />
+
+            <!-- Better Start -->
+            <TextView
+                android:id="@+id/text_view_start_fa_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/start_fa_modifier_title"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/text_view_random_fa_description"
+                app:layout_constraintTop_toBottomOf="@id/text_view_random_fa_description" />
+
+            <TextView
+                android:id="@+id/text_view_start_fa_description"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/start_fa_modifier_description"
+                android:textColor="@color/grey"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toStartOf="@id/checkbox_all_fa"
+                app:layout_constraintStart_toStartOf="@id/text_view_start_fa_title"
+                app:layout_constraintTop_toBottomOf="@id/text_view_start_fa_title" />
+
+            <CheckBox
+                android:id="@+id/checkbox_start_fa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintBottom_toBottomOf="@id/text_view_start_fa_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/text_view_start_fa_title" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

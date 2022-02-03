@@ -2,14 +2,18 @@ package com.example.fakeartistny.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.fakeartistny.R
 import com.example.fakeartistny.databinding.ListItemPlayerBinding
 import com.example.fakeartistny.model.Player
 
 class PlayerListAdapter(
-    private val clickListener: (Player) -> Unit
+    private val nameClickListener: (Player) -> Unit,
+    private val buttonClickListener: (Player) -> Unit
 ) : ListAdapter<Player, PlayerListAdapter.PlayerViewHolder>(DiffCallback) {
 
     class PlayerViewHolder(
@@ -18,7 +22,6 @@ class PlayerListAdapter(
 
         fun bind(player: Player) {
             binding.player = player
-            binding.name.setTextColor(player.color)
             binding.executePendingBindings()
         }
     }
@@ -53,9 +56,9 @@ class PlayerListAdapter(
         val recyclerView: RecyclerView = mParent as RecyclerView
         recyclerView.scrollToPosition(position)
 
-        holder.itemView.setOnClickListener {
-            clickListener(player)
-        }
+        holder.itemView.findViewById<TextView>(R.id.text_view_name).setOnClickListener { nameClickListener(player) }
+        holder.itemView.findViewById<ImageView>(R.id.button_remove_player).setOnClickListener { buttonClickListener(player) }
+
         holder.bind(player)
     }
 }

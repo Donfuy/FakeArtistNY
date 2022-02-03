@@ -1,12 +1,37 @@
 <resources>
-    <!-- Reply Preference -->
-    <string-array name="reply_entries">
-        <item>Reply</item>
-        <item>Reply to all</item>
+    <string-array name="languages_entries">
+        <item>English</item>
+        <item>Português</item>
     </string-array>
 
-    <string-array name="reply_values">
-        <item>reply</item>
-        <item>reply_all</item>
+    <string-array name="languages_values">
+        <item>english</item>
+        <item>portuguese</item>
     </string-array>
+
+    <array name="fg_colors">
+        <item>@color/fg_dark_green</item>
+        <item>@color/fg_green</item>
+        <item>@color/fg_orange</item>
+        <item>@color/fg_red</item>
+        <item>@color/fg_purple</item>
+        <item>@color/fg_lilac</item>
+        <item>@color/fg_blue</item>
+        <item>@color/fg_light_blue</item>
+        <item>@color/fg_pink</item>
+        <item>@color/fg_brown</item>
+    </array>
+
+    <array name="bg_colors">
+        <item>@color/bg_dark_green</item>
+        <item>@color/bg_green</item>
+        <item>@color/bg_orange</item>
+        <item>@color/bg_red</item>
+        <item>@color/bg_purple</item>
+        <item>@color/bg_lilac</item>
+        <item>@color/bg_blue</item>
+        <item>@color/bg_light_blue</item>
+        <item>@color/bg_pink</item>
+        <item>@color/bg_brown</item>
+    </array>
 </resources>

@@ -7,7 +7,6 @@
     android:background="@color/pink_medium"
     tools:context=".ui.StartFragment">
 
-    <!-- TODO: Airplane -->
     <ImageView
         android:id="@+id/imageview_airplane"
         android:layout_width="90dp"

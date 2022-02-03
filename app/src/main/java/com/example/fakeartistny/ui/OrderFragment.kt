@@ -14,7 +14,7 @@ import com.example.fakeartistny.ui.viewmodel.GameViewModel
 
 class OrderFragment : Fragment(){
 
-    private val viewModel: GameViewModel by activityViewModels() {
+    private val viewModel: GameViewModel by activityViewModels {
         GameViewModel.GameViewModelFactory(
             (activity?.application as BaseApplication).database.playerDao()
         )
@@ -27,7 +27,7 @@ class OrderFragment : Fragment(){
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentOrderBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -35,10 +35,12 @@ class OrderFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // TODO: Set adapter. Use the PlayerListAdapter for now.
-        val adapter = PlayerListAdapter { player ->
+        // TODO: Create another adapter for the order
+        val adapter = PlayerListAdapter ({ player ->
 
-        }
+        }, { player ->
+
+        })
 
         adapter.submitList(viewModel.playerOrder)
 

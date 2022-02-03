@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="androidx.core.content.ContextCompat"/>
         <variable
             name="player"
             type="com.example.fakeartistny.model.Player" />
@@ -21,7 +21,7 @@
         android:paddingVertical="8dp">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/text_view_name"
             android:layout_width="124dp"
             android:layout_height="40dp"
             android:layout_marginStart="8dp"
@@ -34,6 +34,7 @@
             android:maxLines="1"
             android:padding="8dp"
             android:text="@{player.name}"
+            android:textColor="@{ContextCompat.getColor(context, player.color)}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,7 +50,7 @@
             android:src="@drawable/ic_baseline_close_24"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/name"
+            app:layout_constraintStart_toEndOf="@id/text_view_name"
             app:layout_constraintTop_toTopOf="parent" />
 
 

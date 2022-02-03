@@ -8,6 +8,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey">#E8E8E8</color>
 
     <color name="pink_dark">#ac0053</color>
     <color name="pink_medium">#e4007f</color>
@@ -32,7 +33,7 @@
     <!-- PLAYER BACKGROUND COLORS -->
     <color name="bg_dark_green">#477C49</color>
     <color name="bg_green">#4FAC8F</color>
-    <color name="bg_orange">#FFB855</color>
+    <color name="bg_orange">#E4A955</color>
     <color name="bg_red">#BC393C</color>
     <color name="bg_purple">#594375</color>
     <color name="bg_lilac">#FF53A8</color>

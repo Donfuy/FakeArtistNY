@@ -2,31 +2,27 @@ package com.example.fakeartistny.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.fakeartistny.R
 import com.example.fakeartistny.data.PlayerDao
 import com.example.fakeartistny.model.Player
+import com.example.fakeartistny.ui.lucky
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
+import kotlin.random.Random
 
 enum class Phase {
     PLAYER, WORDS, REVEAL, ORDER
 }
 
-private val penColors = arrayOf(
-    R.color.fg_dark_green,
-    R.color.fg_green,
-    R.color.fg_orange,
-    R.color.fg_red,
-    R.color.fg_purple,
-    R.color.fg_lilac,
-    R.color.fg_blue,
-    R.color.fg_light_blue,
-    R.color.fg_pink
-)
+enum class Mode {
+    ALL_FAKE_ARTISTS, RANDOM_FAKE_ARTISTS, NO_FAKE_ARTISTS, NORMAL
+}
 
 private const val TAG = "GameViewModel"
 
-class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
+
+class GameViewModel(
+    private val playerDao: PlayerDao
+) : ViewModel() {
 
     val allPlayers: LiveData<List<Player>> = playerDao.getPlayers().asLiveData()
 
@@ -36,20 +32,26 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
 
     // Current phase of the game
     var currentPhase = Phase.PLAYER
-    var playerOrder: List<Player> = listOf()
+    private var currentMode: Mode? = null
 
-    // Color for the next added player
-    private var _currentColor = MutableLiveData<Int>(R.color.fg_red)
-    val currentColor: LiveData<Int> = _currentColor
+    var playerOrder: MutableList<Player> = mutableListOf()
 
     // List of fakes
     private var fakes: MutableList<Player> = mutableListOf()
 
-
-    private var _word = MutableLiveData<String>("")
+    private var _word = MutableLiveData("")
     val word: LiveData<String> = _word
 
-    var words: MutableList<String> = mutableListOf()
+    // Word: Category map
+    private var words = mutableMapOf<String, String>()
+
+    private var _category = MutableLiveData("")
+
+    // Settings
+    var isAllFaEnabled = false
+    var isNoFaEnabled = false
+    var isRandomFaEnabled = false
+    var isStartFaEnabled = false
 
     /**
      * GAME FLOW CONTROL
@@ -58,7 +60,7 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
     fun resetGame() {
         _word.value = ""
         fakes = mutableListOf()
-        words = mutableListOf()
+        words = mutableMapOf()
         currentPhase = Phase.PLAYER
     }
 
@@ -87,21 +89,11 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
         }
     }
 
-    // Returns the next player in the order
-    // There must be another way to do this
+    /**
+     * Returns the next player in the order
+     */
     private fun nextPlayer(): Player {
-        val currentPlayerIndex = playerOrder.indexOf(_currentPlayer.value)
-        return playerOrder[currentPlayerIndex + 1]
-    }
-
-    // Change current player to the previous player
-    private fun previousPlayer(): Player {
-        val currentPlayerIndex = playerOrder.indexOf(_currentPlayer.value)
-        return playerOrder[currentPlayerIndex - 1]
-    }
-
-    fun isFirstPlayer(): Boolean {
-        return (_currentPlayer.value == playerOrder.first())
+        return playerOrder[playerOrder.indexOf(_currentPlayer.value) + 1]
     }
 
     /**
@@ -113,45 +105,119 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
     }
 
     /**
-     * Checks if a player is a Fake Artist
+     * Checks if the current player is a Fake Artist
      */
     fun currentPlayerIsFake(): Boolean {
-        return fakes.find { it == currentPlayer.value } != null
+        return currentPlayer.value?.let { isFake(it) } ?: false
     }
 
+    private fun isFake(player: Player): Boolean {
+        return fakes.find { it == player } != null
+    }
 
     /**
-     *  COLORS
+     * Selects which Fake Artist game mode and applies it
      */
-    fun cycleColors() {
-        val currentColorIndex = penColors.indexOf(currentColor.value)
-        Log.d(TAG, currentColorIndex.toString())
-        if (currentColorIndex == penColors.size - 1) {
-            _currentColor.value = penColors[0]
-        } else {
-            _currentColor.value = penColors[currentColorIndex + 1]
+    private fun selectFAMode() {
+        when {
+            allFaConditions() -> setGameWithAllFa()
+            randomFaConditions() -> setGameWithRandomFa()
+            noFaConditions() -> setGameWithNoFa()
+            else -> setNormalGame()
         }
     }
 
-    fun nextColor() {
-
+    /**
+     * Sets game with everyone as fake artists
+     */
+    private fun setGameWithAllFa() {
+        Log.d(TAG, "All FA mode")
+        fakes.addAll(allPlayers.value!!)
+        currentMode = Mode.ALL_FAKE_ARTISTS
     }
 
     /**
-     *  WORDS PHASE
+     * Sets game with a random amount of fake artists
      */
-
-    private fun setFakes() {
-        // TODO: Variable number of fakes from DataStore
-        fakes.add(allPlayers.value!!.random())
+    private fun setGameWithRandomFa() {
+        Log.d(TAG, "Random FA mode")
+        for (i in 1..Random.nextInt(1, allPlayers.value!!.size / 2 - 1)) {
+            val newFake = allPlayers.value!!.random()
+            if (fakes.find { it == newFake } == null) {
+                fakes.add(newFake)
+            }
+        }
+        currentMode = Mode.RANDOM_FAKE_ARTISTS
     }
 
+    /**
+     * Sets game with no fake artists
+     */
+    private fun setGameWithNoFa() {
+        Log.d(TAG, "No FA mode")
+        fakes = mutableListOf()
+        currentMode = Mode.NO_FAKE_ARTISTS
+    }
+
+    /**
+     * Sets game with one fake artist (normal game mode)
+     */
+    private fun setNormalGame() {
+        Log.d(TAG, "Normal mode")
+        fakes.add(allPlayers.value!!.random())
+        currentMode = Mode.NORMAL
+    }
+
+    /**
+     * Checks if the Random FA game mode conditions are met
+     */
+    private fun randomFaConditions(): Boolean {
+        return isRandomFaEnabled && allPlayers.value!!.size > 4 && lucky(10)
+    }
+
+    /**
+     * Checks if the All FA game mode conditions are met
+     */
+    private fun allFaConditions(): Boolean {
+        return isAllFaEnabled && lucky(10)
+    }
+
+    /**
+     *  Checks if the No FA game mode conditions are met
+     */
+    private fun noFaConditions(): Boolean {
+        return isNoFaEnabled && lucky(10)
+    }
+
+
+    /**
+     * Adds a word to the list of player submitted words
+     */
+    fun addWord(word: String, category: String) {
+        words[word] = category
+    }
+
+    /**
+     * Select a random word from the list of words
+     */
+    private fun selectRandomWord() {
+        _word.value = words.keys.random()
+        _category.value = words[word.value]!!
+    }
+
+    /**
+     * PHASES SETUP
+     */
+
+    /**
+     * Sets up WORDS phase
+     */
     private fun setWordsPhase() {
         // Randomly select the fake artist
-        setFakes()
+        selectFAMode()
 
         // Randomize order
-        playerOrder = allPlayers.value!!.shuffled()
+        playerOrder = allPlayers.value!!.shuffled().toMutableList()
 
         // Initialize currentPlayer with the first player
         _currentPlayer.value = playerOrder.first()
@@ -161,42 +227,53 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
     }
 
     /**
-     *  REVEAL PHASE
+     * Sets up REVEAL phase
      */
-
-    private fun setWord() {
-        _word.value = words.random()
-        Log.d("GameViewModel", _word.value!!)
-    }
-
     private fun setRevealPhase() {
-
-        setWord()
-
+        selectRandomWord()
+        // Set REVEAL phase
         currentPhase = Phase.REVEAL
-
+        // Set first player in order as currentPlayer
         _currentPlayer.value = playerOrder.first()
     }
 
     /**
-     * ORDER PHASE
+     * Sets up ORDER phase (shuffles playerOrder once again)
      */
-
     private fun setOrderPhase() {
         // Set ORDER phase
         currentPhase = Phase.ORDER
 
         // Shuffle order again
-        playerOrder = playerOrder.shuffled()
+        playerOrder = playerOrder.shuffled().toMutableList()
+
+        // Check for startFa Modifier
+        if (startFaConditions() && lucky(90)) {
+            // Swap fake artist with the next artist in order
+            var artistIndex = -1
+            for (player in playerOrder) {
+                if (!isFake(player) && artistIndex == -1) {
+                    artistIndex = playerOrder.indexOf(player)
+                }
+            }
+            val artist = playerOrder[artistIndex]
+            playerOrder[artistIndex] = playerOrder[0]
+            playerOrder[0] = artist
+        }
+    }
+
+    private fun startFaConditions(): Boolean {
+        if (isStartFaEnabled && isFake(playerOrder[0])) {
+            if (currentMode == Mode.NORMAL || currentMode == Mode.RANDOM_FAKE_ARTISTS) {
+                return true
+            }
+        }
+        return false
     }
 
     /**
      *  DB Ops
      */
-
-    fun retrievePlayer(id: Long): LiveData<Player> {
-        return playerDao.getPlayer(id).asLiveData()
-    }
 
     fun addPlayer(name: String, color: Int) {
         val player = Player(
@@ -206,7 +283,6 @@ class GameViewModel(private val playerDao: PlayerDao) : ViewModel() {
         viewModelScope.launch {
             playerDao.insert(player)
         }
-        cycleColors()
     }
 
     fun updatePlayer(id: Long, name: String, color: Int) {

@@ -21,6 +21,9 @@
         <action
             android:id="@+id/action_addPlayersFragment_to_addWordFragment"
             app:destination="@id/addWordFragment" />
+        <action
+            android:id="@+id/action_addPlayersFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
     </fragment>
     <fragment
         android:id="@+id/addWordFragment"
@@ -52,4 +55,8 @@
             android:id="@+id/action_revealFragment_to_addPlayersFragment"
             app:destination="@id/addPlayersFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.fakeartistny.ui.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

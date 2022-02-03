@@ -7,21 +7,19 @@
     <style name="MaterialAlertDialog.FakeArtistNY" parent="MaterialAlertDialog.MaterialComponents">
         <item name="shapeAppearance">@style/ShapeAppearance.FakeArtistNY.MediumComponent</item>
     </style>
-    <style name="ShapeAppearance.FakeArtistNY.MediumComponent"
-        parent="ShapeAppearance.MaterialComponents.MediumComponent">
+
+    <style name="ShapeAppearance.FakeArtistNY.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
         <item name="cornerSize">24dp</item>
 
     </style>
 
-    <style name="MaterialAlertDialog.FakeArtistNY.Body.Text"
-        parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+    <style name="MaterialAlertDialog.FakeArtistNY.Body.Text" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
         <item name="fontFamily">@font/hero_bold</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_margin">4dp</item>
     </style>
 
-    <style name="Widget.FakeArtistNY.Dialog.Button"
-        parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+    <style name="Widget.FakeArtistNY.Dialog.Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="cornerRadius">60dp</item>
         <item name="backgroundTint">@color/pink_dark</item>
         <item name="fontFamily">@font/hero_bold</item>
@@ -31,20 +29,26 @@
         <item name="android:layout_margin">2dp</item>
     </style>
 
-    <style name="Widget.FakeArtistNY.TextInputLayout"
-        parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+    <style name="Widget.FakeArtistNY.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="shapeAppearance">@style/ShapeAppearance.FakeArtistNY.SmallComponent</item>
     </style>
 
-    <style name="ShapeAppearance.FakeArtistNY.SmallComponent"
-        parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <style name="ShapeAppearance.FakeArtistNY.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
         <item name="cornerSize">24dp</item>
         <item name="cornerFamily">rounded</item>
         <item name="boxCornerRadiusBottomEnd">8dp</item>
     </style>
 
-    <style name="ShapeAppearanceOverlay.FakeArtistNY" parent="ShapeAppearanceOverlay">
+    <!-- Checkbox Style -->
+    <style name="Widget.FakeArtistNY.CheckBox" parent="Widget.MaterialComponents.CompoundButton.CheckBox">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.FakeArtistNY.CheckBox</item>
+        <item name="android:scaleX">1.2</item>
+        <item name="android:scaleY">1.2</item>
+    </style>
 
+    <style name="ThemeOverlay.FakeArtistNY.CheckBox" parent="">
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorSecondary">@color/yellow_light</item>
     </style>
 
 </resources>

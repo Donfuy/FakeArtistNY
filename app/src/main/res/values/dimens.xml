@@ -5,4 +5,5 @@
     <dimen name="circle_button_radius">60dp</dimen>
     <dimen name="word_card_height">120dp</dimen>
     <dimen name="word_card_width">250dp</dimen>
+    <dimen name="sub_header_text_size">22sp</dimen>
 </resources>

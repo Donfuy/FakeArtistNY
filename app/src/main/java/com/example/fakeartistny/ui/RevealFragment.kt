@@ -23,7 +23,7 @@ private const val TAG = "RevealFragment"
 
 class RevealFragment : Fragment() {
 
-    private val viewModel: GameViewModel by activityViewModels() {
+    private val viewModel: GameViewModel by activityViewModels {
         GameViewModel.GameViewModelFactory(
             (activity?.application as BaseApplication).database.playerDao()
         )
@@ -42,22 +42,6 @@ class RevealFragment : Fragment() {
                     RevealFragmentDirections.actionRevealFragmentToAddPlayersFragment()
                 )
             }
-
-
-//            if (viewModel.isFirstPlayer()) {
-//                // Ask to reset game
-//                showResetGameAlertDialog(requireContext()) {
-//
-//                    findNavController().navigate(
-//                        RevealFragmentDirections.actionRevealFragmentToAddPlayersFragment()
-//                    )
-//                }
-//            } else {
-//                // Ask to go back to the last player
-//                showGoBackAlertDialog(requireContext()) {
-//                    viewModel.back()
-//                }
-//            }
         }
     }
 
@@ -78,30 +62,29 @@ class RevealFragment : Fragment() {
         }
 
         binding.apply {
-            binding.textViewReveal.text = "Tap to reveal"
             buttonReveal.isEnabled = false
             textViewReveal.setOnClickListener {
                 // Reveal role
                 Log.d(TAG, viewModel.currentPlayerIsFake().toString())
                 if (viewModel.currentPlayerIsFake()) {
-                    textViewReveal.text = "X"
-                    textViewCategory.text = "Fake Artist!"
+                    textViewReveal.visibility = View.INVISIBLE
+                    textViewRevealFake.visibility = View.VISIBLE
                 } else {
-                    Log.d(TAG, viewModel.word.value!!)
                     textViewReveal.text = viewModel.word.value
                 }
                 buttonReveal.isEnabled = true
             }
 
             buttonReveal.setOnClickListener {
-                Log.d(TAG, "Phase is: " + viewModel.currentPhase)
                 viewModel.next()
                 if (viewModel.currentPhase != Phase.REVEAL) {
                     findNavController().navigate(
                         RevealFragmentDirections.actionRevealFragmentToOrderFragment()
                     )
                 } else {
-                    textViewReveal.text = "Tap to reveal"
+                    textViewReveal.visibility = View.VISIBLE
+                    textViewReveal.text = getText(R.string.tap_to_reveal_prompt)
+                    textViewRevealFake.visibility = View.GONE
                     buttonReveal.isEnabled = false
                 }
             }
@@ -113,37 +96,16 @@ class RevealFragment : Fragment() {
         // Get background color
         val bgColor = ContextCompat.getColor(
             requireContext(),
-            bgColor(viewModel.currentPlayer.value!!.color)
+            getBgColor(requireContext(), viewModel.currentPlayer.value!!.color)
         )
 
         binding.apply {
             revealConstraintLayout.setBackgroundColor(bgColor)
 
             // Set status bar and button color to a darkened version of bgColor
-            requireActivity().window.statusBarColor =
-                ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f)
+            darkenStatusBar(requireActivity(), bgColor)
             buttonReveal.setBackgroundColor(ColorUtils.blendARGB(bgColor, Color.BLACK, 0.2f))
             textViewName.text = player.name
         }
     }
-
-    /**
-     * Returns the background color for a given foreground (player) color
-     */
-    private fun bgColor(color: Int): Int {
-        return when (color) {
-            ContextCompat.getColor(requireContext(), R.color.fg_dark_green) -> R.color.bg_dark_green
-            ContextCompat.getColor(requireContext(), R.color.fg_green) -> R.color.bg_green
-            ContextCompat.getColor(requireContext(), R.color.fg_red) -> R.color.bg_red
-            ContextCompat.getColor(requireContext(), R.color.fg_pink) -> R.color.bg_pink
-            ContextCompat.getColor(requireContext(), R.color.fg_lilac) -> R.color.bg_lilac
-            ContextCompat.getColor(requireContext(), R.color.fg_blue) -> R.color.bg_blue
-            ContextCompat.getColor(requireContext(), R.color.fg_light_blue) -> R.color.bg_light_blue
-            ContextCompat.getColor(requireContext(), R.color.fg_orange) -> R.color.bg_orange
-            ContextCompat.getColor(requireContext(), R.color.fg_purple) -> R.color.bg_purple
-            ContextCompat.getColor(requireContext(), R.color.fg_brown) -> R.color.bg_brown
-            else -> R.color.bg_dark_green
-        }
-    }
-
 }

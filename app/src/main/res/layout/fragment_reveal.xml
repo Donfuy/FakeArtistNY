@@ -44,26 +44,32 @@
         android:fontFamily="@font/hero_bold"
         android:gravity="center"
         android:padding="18dp"
-        android:text="Tap to reveal"
+        android:textColor="@color/black"
+        android:text="@string/tap_to_reveal_prompt"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Automobile" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/text_view_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:elevation="1dp"
-        android:fontFamily="@font/hero_regular"
-        android:textSize="18sp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="@id/text_view_reveal"
-        app:layout_constraintStart_toStartOf="@id/text_view_reveal"
-        app:layout_constraintEnd_toEndOf="@id/text_view_reveal"
-        tools:text="Object"/>
+        android:id="@+id/text_view_reveal_fake"
+        android:layout_width="@dimen/word_card_width"
+        android:layout_height="@dimen/word_card_height"
+        android:layout_margin="16dp"
+        android:background="@drawable/list_item_shape"
+        android:backgroundTint="@color/white"
+        android:fontFamily="@font/hero_bold"
+        android:gravity="center"
+        android:padding="18dp"
+        android:textColor="@color/black"
+        android:text="X"
+        android:textSize="36sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/button_reveal"

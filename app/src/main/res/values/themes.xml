@@ -14,6 +14,10 @@
 
         <!-- Customize your theme here. -->
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.FakeArtistNY.MaterialAlertDialog</item>
+        <item name="checkboxStyle">@style/Widget.FakeArtistNY.CheckBox</item>
+
+        <item name="android:fontFamily">@font/hero_bold</item>
+
     </style>
 
     <!-- Material Alert Dialog Style -->
@@ -23,4 +27,5 @@
         <item name="alertDialogStyle">@style/MaterialAlertDialog.FakeArtistNY</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.FakeArtistNY.Dialog.Button</item>
     </style>
+
 </resources>
