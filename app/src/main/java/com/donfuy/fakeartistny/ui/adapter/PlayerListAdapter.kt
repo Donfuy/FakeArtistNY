@@ -1,4 +1,4 @@
-package com.example.fakeartistny.ui.adapter
+package com.donfuy.fakeartistny.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fakeartistny.R
-import com.example.fakeartistny.databinding.ListItemPlayerBinding
-import com.example.fakeartistny.model.Player
+import com.donfuy.fakeartistny.R
+import com.donfuy.fakeartistny.databinding.ListItemPlayerBinding
+import com.donfuy.fakeartistny.model.Player
 
 class PlayerListAdapter(
     private val nameClickListener: (Player) -> Unit,

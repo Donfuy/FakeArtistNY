@@ -1,4 +1,4 @@
-package com.example.fakeartistny
+package com.donfuy.fakeartistny
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

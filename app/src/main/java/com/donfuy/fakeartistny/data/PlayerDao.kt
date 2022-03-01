@@ -1,8 +1,8 @@
-package com.example.fakeartistny.data
+package com.donfuy.fakeartistny.data
 
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import com.example.fakeartistny.model.Player
+import com.donfuy.fakeartistny.model.Player
 import kotlinx.coroutines.flow.Flow
 
 @Dao

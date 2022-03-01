@@ -1,4 +1,4 @@
-package com.example.fakeartistny.ui
+package com.donfuy.fakeartistny.ui
 
 import android.graphics.Color
 import android.os.Bundle
@@ -12,12 +12,12 @@ import androidx.core.graphics.ColorUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.fakeartistny.BaseApplication
-import com.example.fakeartistny.R
-import com.example.fakeartistny.databinding.FragmentRevealBinding
-import com.example.fakeartistny.model.Player
-import com.example.fakeartistny.ui.viewmodel.GameViewModel
-import com.example.fakeartistny.ui.viewmodel.Phase
+import com.donfuy.fakeartistny.BaseApplication
+import com.donfuy.fakeartistny.databinding.FragmentRevealBinding
+import com.donfuy.fakeartistny.R
+import com.donfuy.fakeartistny.model.Player
+import com.donfuy.fakeartistny.ui.viewmodel.GameViewModel
+import com.donfuy.fakeartistny.ui.viewmodel.Phase
 
 private const val TAG = "RevealFragment"
 
@@ -35,6 +35,7 @@ class RevealFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        @Suppress("UNUSED_VARIABLE")
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             showResetGameAlertDialog(requireContext()) {
                 viewModel.resetGame()
@@ -44,6 +45,7 @@ class RevealFragment : Fragment() {
             }
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,

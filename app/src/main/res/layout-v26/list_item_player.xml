@@ -8,7 +8,7 @@
         <import type="androidx.core.content.ContextCompat"/>
         <variable
             name="player"
-            type="com.example.fakeartistny.model.Player" />
+            type="com.donfuy.fakeartistny.model.Player" />
 
     </data>
 
@@ -39,7 +39,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Telmo"
-            tools:textColor="@color/fg_red"/>
+            tools:textColor="@color/fg_red" />
 
         <ImageView
             android:id="@+id/button_remove_player"

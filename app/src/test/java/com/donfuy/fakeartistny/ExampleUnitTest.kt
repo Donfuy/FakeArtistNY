@@ -1,4 +1,4 @@
-package com.example.fakeartistny
+package com.donfuy.fakeartistny
 
 import org.junit.Test
 

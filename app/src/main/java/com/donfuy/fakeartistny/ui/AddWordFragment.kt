@@ -1,8 +1,7 @@
-package com.example.fakeartistny.ui
+package com.donfuy.fakeartistny.ui
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,17 +14,16 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import com.example.fakeartistny.BaseApplication
-import com.example.fakeartistny.R
-import com.example.fakeartistny.databinding.FragmentAddWordBinding
-import com.example.fakeartistny.model.Player
-import com.example.fakeartistny.ui.viewmodel.GameViewModel
-import com.example.fakeartistny.ui.viewmodel.Phase
+import com.donfuy.fakeartistny.BaseApplication
+import com.donfuy.fakeartistny.R
+import com.donfuy.fakeartistny.databinding.FragmentAddWordBinding
+import com.donfuy.fakeartistny.model.Player
+import com.donfuy.fakeartistny.ui.viewmodel.GameViewModel
+import com.donfuy.fakeartistny.ui.viewmodel.Phase
 
+@Suppress("unused")
 private const val TAG = "AddWordFragment"
 
-// TODO: If it's the fake artists' turn, don't add the word
-// TODO: Let the app choose a word for you from a dictionary (shuffle button)
 class AddWordFragment : Fragment() {
 
     private val viewModel: GameViewModel by activityViewModels {
@@ -40,6 +38,8 @@ class AddWordFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+
+        @Suppress("UNUSED_VARIABLE")
         val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
             showResetGameAlertDialog(requireContext()) {
                 viewModel.resetGame()

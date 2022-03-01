@@ -1,10 +1,10 @@
-package com.example.fakeartistny.ui.viewmodel
+package com.donfuy.fakeartistny.ui.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.example.fakeartistny.data.PlayerDao
-import com.example.fakeartistny.model.Player
-import com.example.fakeartistny.ui.lucky
+import com.donfuy.fakeartistny.data.PlayerDao
+import com.donfuy.fakeartistny.model.Player
+import com.donfuy.fakeartistny.ui.lucky
 import kotlinx.coroutines.launch
 import java.lang.IllegalArgumentException
 import kotlin.random.Random

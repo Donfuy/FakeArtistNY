@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.fakeartistny.ui.StartFragment"
+        android:name="com.donfuy.fakeartistny.ui.StartFragment"
         android:label="StartFragment" >
         <action
             android:id="@+id/action_startFragment_to_addPlayersFragment"
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/addPlayersFragment"
-        android:name="com.example.fakeartistny.ui.AddPlayersFragment"
+        android:name="com.donfuy.fakeartistny.ui.AddPlayersFragment"
         android:label="AddPlayersFragment" >
         <action
             android:id="@+id/action_addPlayersFragment_to_addWordFragment"
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/addWordFragment"
-        android:name="com.example.fakeartistny.ui.AddWordFragment"
+        android:name="com.donfuy.fakeartistny.ui.AddWordFragment"
         android:label="AddWordFragment" >
         <action
             android:id="@+id/action_addWordFragment_to_revealFragment"
@@ -38,7 +38,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderFragment"
-        android:name="com.example.fakeartistny.ui.OrderFragment"
+        android:name="com.donfuy.fakeartistny.ui.OrderFragment"
         android:label="OrderFragment" >
         <action
             android:id="@+id/action_orderFragment_to_addPlayersFragment"
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
         android:id="@+id/revealFragment"
-        android:name="com.example.fakeartistny.ui.RevealFragment"
+        android:name="com.donfuy.fakeartistny.ui.RevealFragment"
         android:label="RevealFragment" >
         <action
             android:id="@+id/action_revealFragment_to_orderFragment"
@@ -57,6 +57,6 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.fakeartistny.ui.SettingsFragment"
+        android:name="com.donfuy.fakeartistny.ui.SettingsFragment"
         android:label="SettingsFragment" />
 </navigation>

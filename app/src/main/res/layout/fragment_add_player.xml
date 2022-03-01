@@ -14,6 +14,7 @@
         android:layout_marginTop="12dp"
         android:importantForAccessibility="no"
         android:scaleType="fitCenter"
+        android:elevation="1dp"
         android:src="@drawable/fany_plane"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,6 +28,7 @@
         android:importantForAccessibility="no"
         android:scaleType="fitCenter"
         android:src="@drawable/fany_full_logo"
+        android:elevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/imageview_airplane"
         app:layout_constraintTop_toTopOf="parent" />
@@ -43,7 +45,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageview_logo"
-
         app:spanCount="2"
         tools:listitem="@layout/list_item_player" />
 
@@ -108,13 +109,13 @@
             android:autoSizeMaxTextSize="@dimen/name_max_text_size"
             android:autoSizeMinTextSize="@dimen/name_min_text_size"
             android:autoSizeTextType="uniform"
-            android:textCursorDrawable="@drawable/black_cursor"
             android:background="@color/white"
             android:fontFamily="@font/hero_bold"
             android:hint="@string/new_player_hint"
+            android:imeOptions="actionGo"
             android:inputType="textNoSuggestions|textCapWords"
             android:padding="8dp"
-            android:imeOptions="actionGo"
+            android:textCursorDrawable="@drawable/black_cursor"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/button_add_player"
             app:layout_constraintStart_toEndOf="@id/button_change_color"

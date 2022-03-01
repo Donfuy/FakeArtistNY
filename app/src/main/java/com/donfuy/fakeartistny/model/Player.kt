@@ -1,6 +1,5 @@
-package com.example.fakeartistny.model
+package com.donfuy.fakeartistny.model
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 

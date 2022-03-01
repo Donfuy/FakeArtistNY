@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/pink_medium"
-    tools:context=".ui.StartFragment">
+    tools:context="com.donfuy.fakeartistny.ui.StartFragment">
 
     <ImageView
         android:id="@+id/imageview_airplane"
@@ -14,6 +14,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:importantForAccessibility="no"
+        android:elevation="1dp"
         android:scaleType="fitCenter"
         android:src="@drawable/fany_plane"
         app:layout_constraintStart_toStartOf="parent"
@@ -33,6 +34,7 @@
 
     <ImageView
         android:id="@+id/imageview_logo"
+        android:contentDescription="@string/afany_logo_content_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingHorizontal="32dp"
@@ -54,13 +56,23 @@
         android:text="@string/play"
         android:textSize="22sp"
         app:cornerRadius="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_buy_game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageview_logo"
         tools:text="Play!" />
 
-    <!--    TODO: Buy game button   -->
-
-    <!--    TODO: Change language button    -->
+    <TextView
+        android:id="@+id/text_view_buy_game"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/hero_bold"
+        android:text="Buy the game!"
+        android:textColor="@color/yellow_medium"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageview_logo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.example.fakeartistny.ui
+package com.donfuy.fakeartistny.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,19 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
-import com.example.fakeartistny.*
-import com.example.fakeartistny.databinding.FragmentAddPlayerBinding
-import com.example.fakeartistny.ui.adapter.PlayerListAdapter
-import com.example.fakeartistny.ui.viewmodel.GameViewModel
+import com.donfuy.fakeartistny.BaseApplication
+import com.donfuy.fakeartistny.*
+import com.donfuy.fakeartistny.databinding.FragmentAddPlayerBinding
+import com.donfuy.fakeartistny.ui.adapter.PlayerListAdapter
+import com.donfuy.fakeartistny.ui.viewmodel.GameViewModel
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.flow.map
 
+
+@Suppress("unused")
 private const val TAG = "AddPlayersFragment"
 
 private const val DEFAULT_COLOR = R.color.fg_orange
@@ -50,6 +54,7 @@ class AddPlayersFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        ResourcesCompat.getColor(requireContext().resources, R.color.fg_red, null)
         val adapter = PlayerListAdapter({ player ->
             // Change player color
             viewModel.updatePlayer(
@@ -89,6 +94,7 @@ class AddPlayersFragment : Fragment() {
 
         binding.apply {
             playersRecyclerView.adapter = adapter
+            playersRecyclerView.autoFitColumns(resources.getDimension(R.dimen.list_item_player_width).toInt())
 
             // Initialize colors
             if (buttonChangeColor.colorFilter == null) {

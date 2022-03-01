@@ -6,9 +6,8 @@
     android:layout_height="match_parent"
     android:background="@color/pink_medium"
     android:padding="8dp"
-    tools:context=".ui.SettingsFragment">
+    tools:context="com.donfuy.fakeartistny.ui.SettingsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/text_view_settings_header"
         android:layout_width="wrap_content"
@@ -18,11 +17,12 @@
         android:text="@string/settings_header"
         android:textColor="@color/yellow_medium"
         android:textSize="32sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
+        app:layout_constraintBottom_toBottomOf="@+id/button_close"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/button_close" />
 
     <ImageView
+        android:contentDescription="@string/go_back_to_main_screen"
         android:id="@+id/button_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

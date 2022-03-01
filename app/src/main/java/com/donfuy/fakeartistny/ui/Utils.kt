@@ -1,15 +1,15 @@
-package com.example.fakeartistny.ui
+package com.donfuy.fakeartistny.ui
 
 import android.app.Activity
 import android.content.Context
-import android.content.res.TypedArray
 import android.graphics.Color
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.core.graphics.ColorUtils
-import com.example.fakeartistny.R
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.donfuy.fakeartistny.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlin.math.absoluteValue
 import kotlin.random.Random
 
 /**
@@ -48,6 +48,7 @@ fun showResetGameAlertDialog(context: Context, function: () -> Unit) {
 /**
  * Shows an alert dialog asking to go back to the previous player
  */
+@Suppress("unused")
 fun showGoBackAlertDialog(context: Context, function: () -> Unit) {
     MaterialAlertDialogBuilder(context)
         .setMessage("Go back to the previous player?")
@@ -105,4 +106,14 @@ fun darkenStatusBar(activity: Activity, color: Int) {
  */
 fun lucky(chance: Int): Boolean {
     return Random.nextInt(1, 100) <= chance
+}
+
+
+/**
+ * Fit number of columns to screen size
+ */
+fun RecyclerView.autoFitColumns(columnWidth: Int) {
+    val displayMetrics = this.context.resources.displayMetrics
+    val noOfColumns = ((displayMetrics.widthPixels / displayMetrics.density) / columnWidth).toInt()
+    this.layoutManager = GridLayoutManager(this.context, noOfColumns)
 }
